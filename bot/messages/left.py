@@ -21,7 +21,7 @@ def get_text(message: types.Message) -> str:
 
 def create_message(message: types.Message) -> dict:
     left = get_text(message)
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
     markup.add(
         types.InlineKeyboardButton(text=message.lang['button.menu'], callback_data='open.menu'),
         types.InlineKeyboardButton(text=message.lang['button.refresh'], callback_data='open.left')

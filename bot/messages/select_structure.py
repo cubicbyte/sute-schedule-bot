@@ -12,7 +12,7 @@ def create_message(message: types.Message) -> dict:
         return create_api_unavaliable_message(message)
         
     structures = res.json()
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
     message_text = message.lang['command.structure']
 
     if len(structures) == 1:

@@ -4,7 +4,7 @@ from ..settings import api
 from .api_unavaliable import create_message as create_api_unavaliable_message
 
 def create_message(message: types.Message) -> dict:
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
     message_text = message.lang['command.group']
 
     try:

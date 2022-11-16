@@ -3,7 +3,7 @@ from ..settings import langs
 
 def create_message(message: types.Message) -> dict:
     message_text = message.lang['command.lang_select'].format(lang=message.lang['lang_name'])
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
 
     for lang in langs:
         markup.add(

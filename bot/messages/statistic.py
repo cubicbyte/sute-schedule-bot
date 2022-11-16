@@ -25,7 +25,7 @@ def create_message(message: types.Message) -> dict:
         first=first_msg_date
     )
 
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
     markup.add(
         types.InlineKeyboardButton(text=message.lang['button.menu'], callback_data='open.menu'),
         types.InlineKeyboardButton(text='How Did We Get Here?', url='https://github.com/Angron42/sute-schedule-bot')

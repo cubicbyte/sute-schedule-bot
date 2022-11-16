@@ -17,12 +17,19 @@ def update_config(self, create = False):
     self._config = chat_configs.get_chat_config(self.chat.id, create)
 
 
+#@property
+def KeyboardMarkup(self) -> telebot.types.ReplyKeyboardMarkup | telebot.types.InlineKeyboardMarkup:
+    if self.chat.type == 'private':
+        return telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+
+    return telebot.types.InlineKeyboardMarkup()
+
 @property
-def config_created(self):
+def config_created(self) -> bool:
     return chat_configs.is_chat_config_exists(self.chat.id)
 
 @property
-def config(self):
+def config(self) -> dict[str, any]:
     if self._config is None:
         self.update_config(True)
 
@@ -33,7 +40,7 @@ def config(self, config: dict[str, any]):
     chat_configs.set_chat_config(self.chat.id, config)
 
 @property
-def lang_code(self):
+def lang_code(self) -> str:
     lang_code = self.config['lang']
 
     if lang_code is None:
@@ -58,18 +65,18 @@ def lang_code(self, lang_code: str):
     self._config = chat_configs.set_chat_config_field(self.chat.id, 'lang', lang_code, True)
 
 @property
-def lang(self):
+def lang(self) -> dict[str, str]:
     return langs[self.lang_code]
 
 @property
-def args_case(self):
+def args_case(self) -> list[str]:
     if self._args_case is None:
         self._args_case = self.text.split(' ')[1:]
 
     return self._args_case
 
 @property
-def args(self):
+def args(self) -> list[str]:
     if self._args is None:
         self._args = list(arg.lower() for arg in self.args_case)
 
@@ -77,6 +84,7 @@ def args(self):
 
 
 telebot.types.Message.update_config = update_config
+telebot.types.Message.KeyboardMarkup = KeyboardMarkup
 telebot.types.Message.config_created = config_created
 telebot.types.Message.config = config
 telebot.types.Message.lang_code = lang_code

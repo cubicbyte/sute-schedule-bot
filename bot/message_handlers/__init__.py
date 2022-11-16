@@ -9,3 +9,4 @@ from .today import handle_command as today_command
 from .tomorrow import handle_command as tomorrow_command
 from .calls import handle_command as calls_command
 from .admin import handle_command as admin_command
+from .keyboard_cmd import handle_command as keyboard_cmd_handler

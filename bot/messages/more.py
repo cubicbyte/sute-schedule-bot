@@ -2,7 +2,7 @@ from telebot import types
 
 def create_message(message: types.Message) -> dict:
     message_text = message.lang['command.more']
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
 
     markup.add(
         types.InlineKeyboardButton(text=message.lang['button.calls'], callback_data='open.calls'),

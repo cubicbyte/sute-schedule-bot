@@ -2,7 +2,7 @@ from telebot import types
 
 def create_message(message: types.Message) -> dict:
     message_text = message.lang['text.no_permissions']
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
 
     markup.add(
         types.InlineKeyboardButton(text=message.lang['button.menu'], callback_data='open.menu')

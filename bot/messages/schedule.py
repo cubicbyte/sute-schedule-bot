@@ -27,11 +27,11 @@ def create_lessons_empty_text(message: types.Message) -> str:
     return text
 
 def create_message(message: types.Message, date: datetime | str) -> dict:
-    if isinstance(date, datetime):
-        date_str = date.strftime('%Y-%m-%d')
-    else:
+    if isinstance(date, str):
         date_str = date
         date = datetime.strptime(date, '%Y-%m-%d')
+    else:
+        date_str = date.strftime('%Y-%m-%d')
 
     try:
         res = api.timetable_group(message.config['schedule']['group_id'], date)

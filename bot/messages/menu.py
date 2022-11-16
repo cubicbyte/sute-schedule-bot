@@ -4,7 +4,7 @@ from .left import get_text as get_remaining_time_text
 def create_message(message: types.Message) -> dict:
     left = get_remaining_time_text(message)
     message_text = message.lang['command.menu'].format(left=left)
-    markup = types.InlineKeyboardMarkup()
+    markup = message.KeyboardMarkup()
 
     markup.add(
         types.InlineKeyboardButton(text=message.lang['button.schedule.today'], callback_data='open.schedule.today'),
